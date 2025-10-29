@@ -1,0 +1,36 @@
+# Spawn go1 robot in RViz and Gazebo
+ros2 launch go1_simulation go1.gazebo.launch.py
+
+# Start Locomotion controllers
+ros2 run unitree_guide2 junior_ctrl
+
+# Move Robot with keyboard
+ros2 run go1_simulation move_go1_with_keyboard.py
+
+# Send Walking Commands
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist \
+  "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}" -r 10
+
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist \
+  "{linear: {x: 0.2, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}" -r 10
+
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist \
+  "{linear: {x: -0.2, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}" -r 10  
+
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist \
+  "{linear: {x: 0.05, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.2}}" -r 10
+
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist \
+  "{linear: {x: 0.05, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: -0.2}}" -r 10
+
+# Move each joint in CLI
+ros2 topic pub /FL_hip_controller/command \
+  ros2_unitree_legged_msgs/msg/MotorCmd \
+  "{mode: 10, q: 0.3, dq: 0.0, tau: 1.0, kp: 100.0, kd: 5.0}" -r 100
+
+# Start Gazebo without Launch File
+export GZ_SIM_RESOURCE_PATH="/opt/ros/jazzy/share:/home/roy/TA/src/go1_simulation/models"
+ros2 launch ros_gz_sim gz_sim.launch.py gz_args:='-r -v 4 house.world'
+
+# Check ROS2 controllers
+ros2 control list_controllers

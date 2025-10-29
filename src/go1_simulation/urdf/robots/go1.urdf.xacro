@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<robot name="go1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:arg name="use_gazebo" default="false"/>
+
+    <xacro:include filename="$(find go1_simulation)/urdf/config/const.urdf.xacro"/>
+    <xacro:include filename="$(find go1_simulation)/urdf/config/sensor.urdf.xacro"/>
+    <xacro:include filename="$(find go1_simulation)/urdf/config/materials.urdf.xacro"/>
+    <xacro:include filename="$(find go1_simulation)/urdf/mech/trunk.urdf.xacro"/>
+    <xacro:include filename="$(find go1_simulation)/urdf/mech/leg.urdf.xacro"/>
+    <xacro:include filename="$(find go1_simulation)/urdf/sensors/depthCamera.urdf.xacro"/>
+    <xacro:include filename="$(find go1_simulation)/urdf/sensors/imu.urdf.xacro"/>
+    <xacro:include filename="$(find go1_simulation)/urdf/sensors/lidar.urdf.xacro"/>
+
+    <link name="base">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="floating_base" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <parent link="base"/>
+        <child link="trunk"/>
+    </joint>
+
+    <!-- Legs -->
+    <xacro:trunk />
+    <xacro:leg name="FR" mirror="-1" mirror_dae= "False" front_hind="1"  front_hind_dae="True"  />
+    <xacro:leg name="FL" mirror="1"  mirror_dae="True"   front_hind="1"  front_hind_dae="True"  />
+    <xacro:leg name="RR" mirror="-1" mirror_dae="False"  front_hind="-1" front_hind_dae="False" />
+    <xacro:leg name="RL" mirror="1"  mirror_dae="True"   front_hind="-1" front_hind_dae="False" />
+
+    <!-- Sensors -->
+    <xacro:imu />
+    <xacro:lidar />
+    <xacro:depthCamera camID="1" name="face">
+        <origin rpy="${PI} 0 0" xyz="0.2785 0.0125 0.0167"/>
+    </xacro:depthCamera>
+
+    <xacro:macro name="material_visual" params="reference ambient diffuse specular">
+        <gazebo reference="${reference}">
+        <visual>
+            <material>
+            <ambient>${ambient}</ambient>
+            <diffuse>${diffuse}</diffuse>
+            <specular>${specular}</specular>
+            </material>
+        </visual>
+        </gazebo>
+    </xacro:macro>
+
+    <xacro:material_visual reference="trunk" ambient="${basic_ambient}" diffuse="${basic_diffuse}" specular="${basic_specular}"/>
+    <xacro:material_visual reference="FR" ambient="${basic_ambient}" diffuse="${basic_diffuse}" specular="${basic_specular}"/>
+    <xacro:material_visual reference="FL" ambient="${basic_ambient}" diffuse="${basic_diffuse}" specular="${basic_specular}"/>
+    <xacro:material_visual reference="RR" ambient="${basic_ambient}" diffuse="${basic_diffuse}" specular="${basic_specular}"/>
+    <xacro:material_visual reference="RL" ambient="${basic_ambient}" diffuse="${basic_diffuse}" specular="${basic_specular}"/>
+    <xacro:material_visual reference="imu" ambient="${basic_ambient}" diffuse="${basic_diffuse}" specular="${basic_specular}"/>
+    <xacro:material_visual reference="lidar" ambient="${basic_ambient}" diffuse="${basic_diffuse}" specular="${basic_specular}"/>
+
+    <xacro:include filename="$(find go1_simulation)/urdf/control/gazebo_sim_ros2_control.urdf.xacro" />
+    <xacro:load_gazebo_sim_ros2_control_plugin use_gazebo="$(arg use_gazebo)"/>
+
+    <xacro:include filename="$(find go1_simulation)/urdf/control/go1_ros2_control.urdf.xacro" />
+    <xacro:go1_ros2_control use_gazebo="$(arg use_gazebo)"/>
+    
+</robot>

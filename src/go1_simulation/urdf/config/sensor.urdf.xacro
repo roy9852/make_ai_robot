@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Constants for camera -->
+    <xacro:property name="horizontal_fov" value="1.0"/>
+    <xacro:property name="image_width" value="720"/>
+    <xacro:property name="image_height" value="480"/>
+    <xacro:property name="image_format" value="R8G8B8"/>
+    <xacro:property name="clip_near" value="0.05"/>
+    <xacro:property name="clip_far" value="3.0"/>
+    <xacro:property name="camera_always_on" value="1"/>
+    <xacro:property name="camera_update_rate" value="10"/>
+    <xacro:property name="camera_visualize" value="true"/>
+
+    <!-- Constants for IMU -->
+    <xacro:property name="imu_always_on" value="1"/>
+    <xacro:property name="imu_update_rate" value="1000"/>
+    <xacro:property name="imu_visualize" value="true"/>
+
+    <!-- Constants for LIDAR -->
+    <xacro:property name="ray_count" value="720"/>
+    <xacro:property name="min_angle" value="-3.14159"/>
+    <xacro:property name="max_angle" value="3.14159"/>
+    <xacro:property name="min_range" value="0.20"/>
+    <xacro:property name="max_range" value="30.0"/>
+    <xacro:property name="range_resolution" value="0.13"/>
+    <xacro:property name="lidar_always_on" value="1"/>
+    <xacro:property name="lidar_update_rate" value="20"/>
+    <xacro:property name="lidar_visualize" value="false"/>
+
+</robot>

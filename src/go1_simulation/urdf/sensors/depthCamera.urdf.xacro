@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="depthCamera" params="camID name *origin">
+        <joint name="camera_joint_${name}" type="fixed">
+            <xacro:insert_block name="origin"/>
+            <parent link="trunk"/>
+            <child link="camera_${name}"/>
+        </joint>
+
+        <link name="camera_${name}">
+            <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size=".001 .001 .001"/>
+            </geometry>
+            </collision>
+
+            <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find go1_simulation)/meshes/depthCamera.dae" scale="1 1 1"/>
+            </geometry>
+            </visual>
+
+            <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            </inertial>
+        </link>
+
+        <joint name="camera_optical_joint_${name}" type="fixed">
+            <origin xyz="0 0 0" rpy="${PI} 0 0"/>
+            <parent link="camera_${name}"/>
+            <child link="camera_optical_${name}"/>
+        </joint>
+
+        <link name="camera_optical_${name}">
+        </link>
+
+        <gazebo reference="camera_optical_${name}">
+            <sensor name="camera_${name}" type="rgbd_camera">
+                <camera>
+                    <horizontal_fov>${horizontal_fov}</horizontal_fov>
+                    <image>
+                        <width>${image_width}</width>
+                        <height>${image_height}</height>
+                        <format>${image_format}</format>
+                    </image>
+                    <clip>
+                        <near>${clip_near}</near>
+                        <far>${clip_far}</far>
+                    </clip>
+                </camera>
+                <always_on>${camera_always_on}</always_on>
+                <gz_frame_id>camera_optical_${name}</gz_frame_id>
+                <topic>camera_${name}</topic>
+                <update_rate>${camera_update_rate}</update_rate>
+                <visualize>${camera_visualize}</visualize>                
+            </sensor>
+        </gazebo>
+
+    </xacro:macro>
+</robot>

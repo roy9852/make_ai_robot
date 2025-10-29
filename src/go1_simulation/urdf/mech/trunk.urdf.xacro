@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="trunk">
+
+        <link name="trunk">
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="file://$(find go1_simulation)/meshes/trunk.dae" scale="1 1 1"/>
+                </geometry>
+                <!-- <material name="orange"/> -->
+            </visual>
+            <collision>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <box size="${trunk_length} ${trunk_width} ${trunk_height}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin rpy="0 0 0" xyz="${trunk_com_x} ${trunk_com_y} ${trunk_com_z}"/>
+                <mass value="${trunk_mass}"/>
+                <inertia
+                    ixx="${trunk_ixx}" ixy="${trunk_ixy}" ixz="${trunk_ixz}"
+                    iyy="${trunk_iyy}" iyz="${trunk_iyz}"
+                    izz="${trunk_izz}"/>  
+            </inertial>
+        </link>     
+
+    </xacro:macro>
+
+</robot>

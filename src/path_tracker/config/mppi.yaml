@@ -1,0 +1,107 @@
+path_tracker:
+  ros__parameters:
+    NX: 4
+    NU: 2
+    K: 500
+    T: 20
+    DT: 0.1
+    DL: 0.1
+    ICR: 0.0
+    
+    target_speed: 0.5  # [m/s] target speed
+    
+    average: 10
+    n_ind_search: 30
+    
+    custom_path_name: 'custom_path.csv'
+    
+    num_vis: 50
+    verbose: false
+    vis_segment: true
+    vis_reference: true
+    vis_candidate: true
+    vis_hist: true
+    vis_poly: true
+    vis_subgoal: true
+    debug_cost: false
+    preserved_path: true  # True when the passed path remains undeleted
+    reconfigure: true
+    
+    Lam: 12.5
+    Gam: 0.9
+    
+    Cov: [0.05, 0.10]
+    Q: [15.0, 15.0, 30.0, 5.0] # state cost matrix [x, y, velocity, yaw] - increased yaw from 0.1 to 5.0
+    Qf: [5.0, 5.0, 30.0, 10.0]  # state final matrix - increased yaw from 1.0 to 10.0
+    R: [1.0, 0.5]              # input cost matrix [linear_vel, angular_vel]
+    
+    subgoal_cost_weight: 0.0
+    velocity_cost_weight: 0.0
+    heading_cost_weight: 0.0
+    map_cost_weight: 0.0
+    use_const: false
+    
+    const_thres: 0.5
+    
+    tracking_thres: 5.0
+    goal_thres: 0.5
+    
+    # Poly | Spline | SmoothSpline | PenalizedBSpline
+    Lamb: 0.0001
+    Window: 10
+    Knot: 9
+    
+    Regressor_Type: "Spline"
+    Order: 1
+
+    width: 0.5708         # 2.0 # 0.5708 # bigger -> lower radius -> oversteer
+    wheelRadius: 0.1785   # bigger -> lower velocity -> understeer
+    wheelBase: 0.512
+    
+    maxLinVel: 0.4
+    maxAngVel: 0.75
+
+    frame_id: map         # global_gravity_aligned with pts-map
+    visky_frame_id: visky
+    frame_id_fastlio: map_fastlio
+
+    localization_topic: "/go1_pose"  # Robot pose topic
+    localization_dummy_topic: "/aft_mapped_to_dummy"
+    transformation_matrix_topic: "/transformation_matrix"
+
+    # Perception - Perception
+    lidar_topic: "/cloud_registered_lidar"
+    occ_map_topic: "/occ_map"
+    depth_front_topic: "/zed_front/front/depth/image"
+    depth_rear_topic: "/zed_rear/rear/depth/image"
+    cam_front_topic: "/zed_front/front/left/color/compressed"
+    cam_rear_topic: "/zed_rear/rear/left/color/compressed"
+    cam_info_front_topic: "/zed_front/front/left/camera_info"
+    cam_info_rear_topic: "/zed_rear/rear/left/camera_info"
+    seg_front_topic: "/semantic_seg_front/result"
+    seg_rear_topic: "/semantic_seg_rear/result"
+    reg_topic: "/accumed_points"
+    patchwork_output_topic: "/after_dynamic_classifier_pts"
+    seg_pcd_global_topic: "/seg_pcd_global"
+    camera_cost_topic: "/camera_cost"
+    lidar_cost_topic: "/lidar_cost_topic"
+
+    # Planning - Cost Estimation
+    cost_map_topic: "/cost_map_topic"
+    constraint_map_topic: "/constraint_map_topic"
+    height_map_topic: "/height_map_topic"
+    cost_weight_topic: "/cost_weight"
+
+    # Planning - Local Path Planner
+    subgoal_topic: "/subgoal_topic"
+    local_path_topic: "/local_path"
+    clicked_goal_topic: "/clicked_point"
+
+    # Planning - Controller
+    cmd_ctrl_topic: "/cmd_vel"
+    cmd_ctrl_stamped_topic: "/cmd_vel_stamped"
+    enable_stamped_cmd_vel: true
+    gear_topic: "/gear"
+
+    # Planning - Emergency Manager
+    emergency_topic: "/emergency"

@@ -1,0 +1,142 @@
+# Controller Manager configuration for GO1 with Unitree controllers
+controller_manager:
+  ros__parameters:
+    update_rate: 1000  # Hz
+    use_sim_time: true
+
+    # Joint state broadcaster
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    # 12 individual joint controllers (one per joint)
+    FR_hip_controller:
+      type: ros2_unitree_legged_control/UnitreeLeggedController
+    FR_thigh_controller:
+      type: ros2_unitree_legged_control/UnitreeLeggedController
+    FR_calf_controller:
+      type: ros2_unitree_legged_control/UnitreeLeggedController
+
+    FL_hip_controller:
+      type: ros2_unitree_legged_control/UnitreeLeggedController
+    FL_thigh_controller:
+      type: ros2_unitree_legged_control/UnitreeLeggedController
+    FL_calf_controller:
+      type: ros2_unitree_legged_control/UnitreeLeggedController
+
+    RR_hip_controller:
+      type: ros2_unitree_legged_control/UnitreeLeggedController
+    RR_thigh_controller:
+      type: ros2_unitree_legged_control/UnitreeLeggedController
+    RR_calf_controller:
+      type: ros2_unitree_legged_control/UnitreeLeggedController
+
+    RL_hip_controller:
+      type: ros2_unitree_legged_control/UnitreeLeggedController
+    RL_thigh_controller:
+      type: ros2_unitree_legged_control/UnitreeLeggedController
+    RL_calf_controller:
+      type: ros2_unitree_legged_control/UnitreeLeggedController
+
+
+# Front Right Leg Controllers
+FR_hip_controller:
+  ros__parameters:
+    joint_name: "FR_hip_joint"
+    pid:
+      p: 100.0
+      i: 0.0
+      d: 5.0
+
+FR_thigh_controller:
+  ros__parameters:
+    joint_name: "FR_thigh_joint"
+    pid:
+      p: 300.0
+      i: 0.0
+      d: 8.0
+
+FR_calf_controller:
+  ros__parameters:
+    joint_name: "FR_calf_joint"
+    pid:
+      p: 300.0
+      i: 0.0
+      d: 8.0
+
+
+# Front Left Leg Controllers
+FL_hip_controller:
+  ros__parameters:
+    joint_name: "FL_hip_joint"
+    pid:
+      p: 100.0
+      i: 0.0
+      d: 5.0
+
+FL_thigh_controller:
+  ros__parameters:
+    joint_name: "FL_thigh_joint"
+    pid:
+      p: 300.0
+      i: 0.0
+      d: 8.0
+
+FL_calf_controller:
+  ros__parameters:
+    joint_name: "FL_calf_joint"
+    pid:
+      p: 300.0
+      i: 0.0
+      d: 8.0
+
+
+# Rear Right Leg Controllers
+RR_hip_controller:
+  ros__parameters:
+    joint_name: "RR_hip_joint"
+    pid:
+      p: 100.0
+      i: 0.0
+      d: 5.0
+
+RR_thigh_controller:
+  ros__parameters:
+    joint_name: "RR_thigh_joint"
+    pid:
+      p: 300.0
+      i: 0.0
+      d: 8.0
+
+RR_calf_controller:
+  ros__parameters:
+    joint_name: "RR_calf_joint"
+    pid:
+      p: 300.0
+      i: 0.0
+      d: 8.0
+
+
+# Rear Left Leg Controllers
+RL_hip_controller:
+  ros__parameters:
+    joint_name: "RL_hip_joint"
+    pid:
+      p: 100.0
+      i: 0.0
+      d: 5.0
+
+RL_thigh_controller:
+  ros__parameters:
+    joint_name: "RL_thigh_joint"
+    pid:
+      p: 300.0
+      i: 0.0
+      d: 8.0
+
+RL_calf_controller:
+  ros__parameters:
+    joint_name: "RL_calf_joint"
+    pid:
+      p: 300.0
+      i: 0.0
+      d: 8.0
