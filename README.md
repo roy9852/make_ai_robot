@@ -200,6 +200,7 @@ After you run this node, press a number key (1-5) to change robot's status in th
 - **Step 4**: After the robot stands up, press number 5. Then the robot's body will drop slightly
 - **Step 5**: Now, you can move your robot with `/cmd_vel` topic
 
+Please watch below video
 <img src="images/use_junior_ctrl.gif" alt="Robot Control Demo" width="600"/>
 
 ### Keyboard Teleoperation
