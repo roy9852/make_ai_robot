@@ -61,8 +61,6 @@ install(
     worlds                    # Gazebo world files
     rviz                      # RViz configuration files
     config                    # Configuration files for controllers
-    include                   # C++ header files (public interface)
-    src                       # C++ source files (for reference/debugging)
     go1_simulation            # Python package directory
   DESTINATION share/${PROJECT_NAME}  # Install to: install/share/panda_controller/
 )

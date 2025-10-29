@@ -57,8 +57,9 @@ High-level locomotion controller for Unitree Go1 robot.
 ### Step 1: Clone the Repository
 
 ```bash
-cd ~/your_workspace
-git clone <repository-url> src
+cd ~
+git clone https://github.com/roy9852/make_ai_robot.git
+
 ```
 
 ### Step 2: Install Dependencies
@@ -66,7 +67,7 @@ git clone <repository-url> src
 Use `rosdep` to automatically install all required dependencies:
 
 ```bash
-cd ~/your_workspace
+cd ~/make_ai_robot
 rosdep install -i --from-path src --rosdistro $ROS_DISTRO -y
 ```
 
