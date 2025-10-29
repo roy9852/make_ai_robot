@@ -1,8 +1,31 @@
 # ROS2 Practice Repository of "How to make a robot with artificial intelligence" Class.
 
-This repository is for ROS2 practice of 2025 Fall "How to make a robot with artificial intelligence" class. 
+This repository is for ROS2 practice of 2025 Fall "How to Make a Robot with Artificial Intelligence" class.
 
 It contains a collection of ROS2 packages for simulating and controlling the Unitree Go1 quadruped robot.
+
+---
+
+## ⚠️ Caution 
+This repository is currently under active development and **frequent updates** may occur.
+
+To ensure you are working with the **latest version** of this project, please run the following command in your terminal:
+
+```bash
+git pull origin main
+```
+
+Be careful not to remove your local changes
+
+---
+
+## 🔧 Prerequisites
+
+- **Operating System**: Ubuntu 24.04
+- **ROS2 Distribution**: Jazzy Jalisco
+- **Gazebo**: Harmonic
+
+---
 
 ## 📦 Packages Overview
 
@@ -42,13 +65,6 @@ High-level locomotion controller for Unitree Go1 robot.
 - Trotting gait implementation
 - ROS2 integration for simulation
 
----
-
-## 🔧 Prerequisites
-
-- **Operating System**: Ubuntu 24.04
-- **ROS2 Distribution**: Jazzy Jalisco
-- **Gazebo**: Harmonic
 
 ---
 
@@ -166,7 +182,7 @@ Run the high-level locomotion controller:
 ros2 run unitree_guide2 junior_ctrl
 ```
 
-After you run this code, press keyboard number button (1-5) to change robot's status in the same CLI
+After you run this node, press a number key (1-5) to change robot's status in the same CLI
 
 **Robot Status (FSM States)**
 - **Number 1**: Passive mode - Robot is passive, no joint control (initialization)
@@ -176,11 +192,11 @@ After you run this code, press keyboard number button (1-5) to change robot's st
 - **Number 5**: Move base - Robot can move using `/cmd_vel` commands (velocity control mode)
 
 **Operation Order After Running Node (5 Steps):**
-- Step 1: Spawn the robot in Gazebo environment
-- Step 2: Press number 1 for initialization
-- Step 3: Press number 2 to stand up the robot
-- Step 4: After the robot stands up, press number 5. Then robot's body fall down a little bit
-- Step 5: Now,a you can move your robot with `/cmd_vel` topic
+- **Step 1**: Spawn the robot in Gazebo environment
+- **Step 2**: Press number 1 for initialization
+- **Step 3**: Press number 2 to stand up the robot
+- **Step 4**: After the robot stands up, press number 5. Then the robot's body will drop slightly
+- **Step 5**: Now, you can move your robot with `/cmd_vel` topic
 
 ### Keyboard Teleoperation
 
@@ -190,24 +206,31 @@ Control the robot with keyboard after running `junior_ctrl` node:
 ros2 run go1_simulation move_go1_with_keyboard.py
 ```
 
-You might use CLI command (This command is for rotation):
+You can also use a CLI command (this command is for rotation):
 ```bash
 ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.05, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.2}}" -r 10
 ```
 
 ### 3. Path Tracking
 
-**Step 1**: Launch the MPPI path tracker (in a new terminal):
+**Step 1**: Launch the MPPI path tracker:
 
 ```bash
 ros2 launch path_tracker path_tracker_launch.py
 ```
 
-**Step 2**: Generate and follow a path to specific pose (in a new terminal):
+**Step 2**: Generate and follow a path to specific pose:
 
 ```bash
 # Move to position (x=2.0 meter, y=1.0 meter) with yaw=0 rad orientation
 ros2 run path_tracker move_robot.py 2.0 1.0 0.0
+```
+
+**Step 3**: Check!:
+```bash 
+# Read x, y, z, qx, qy, qz, qw and compare with your command
+# You need to convert the quaternion to a yaw angle
+ros2 topic echo /go1_pose
 ```
 
 **How it works:**
@@ -377,8 +400,8 @@ source ~/your_workspace/install/setup.bash
 ### Robot Doesn't Walk Well
 **Common causes:**
 1. Check Real Time Factor (RTF) of the simulation (right below of the GUI). It should be above 60% for normal operation.
-2. Check Hz of `/imu_plugin/out`. It should be above 500 Hz for normal operation.
-3. If you use better performance computer, the problem might be solved.
+2. Check the frequency (Hz) of `/imu_plugin/out`. It should be above 500 Hz for normal operation.
+3. If you use a higher-performance computer, the problem might be solved.
 
 ### Robot Doesn't Move
 **Common causes:**
