@@ -162,9 +162,9 @@ ros2 launch go1_simulation go1.gazebo.launch.py use_gt_pose:=true
 
 You should see both Gazebo and RViz:
 
-![Gazebo Simulation](images/start_gazebo.png)
-![RViz Visualization 1](images/start_rviz_1.png)
-![RViz Visualization 2](images/start_rviz_2.png)
+<img src="images/start_gazebo.png" alt="Gazebo Simulation" width="600"/>
+<img src="images/start_rviz_1.png" alt="RViz Visualization 1" width="600"/>
+<img src="images/start_rviz_2.png" alt="RViz Visualization 2" width="600"/>
 
 **Launch Arguments:**
 - `world_file:=<world_name>.world` - Choose world (empty, cafe, house)
@@ -200,7 +200,7 @@ After you run this node, press a number key (1-5) to change robot's status in th
 - **Step 4**: After the robot stands up, press number 5. Then the robot's body will drop slightly
 - **Step 5**: Now, you can move your robot with `/cmd_vel` topic
 
-![Robot Control Demo](images/use_junior_ctrl.gif)
+<img src="images/use_junior_ctrl.gif" alt="Robot Control Demo" width="600"/>
 
 ### Keyboard Teleoperation
 
