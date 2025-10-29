@@ -122,7 +122,7 @@ source install/setup.bash
 
 Add to your `~/.bashrc` for automatic sourcing:
 ```bash
-echo "source ~/your_workspace/install/setup.bash" >> ~/.bashrc
+echo "source ~/make_ai_robot/install/setup.bash" >> ~/.bashrc
 ```
 
 ### Understanding the Workspace Structure
@@ -130,7 +130,7 @@ echo "source ~/your_workspace/install/setup.bash" >> ~/.bashrc
 After building, your workspace will have these directories:
 
 ```
-your_workspace/
+make_ai_robot/
 ├── src/                    # Source code (you edit files here)
 │   ├── go1_simulation/
 │   ├── path_tracker/
@@ -400,7 +400,7 @@ rosdep install -i --from-path src --rosdistro $ROS_DISTRO -y
 If ROS2 commands are not found, make sure you've sourced the ROS2 installation:
 ```bash
 source /opt/ros/jazzy/setup.bash
-source ~/your_workspace/install/setup.bash
+source ~/make_ai_robot/install/setup.bash
 ```
 
 ### Robot Doesn't Walk Well
