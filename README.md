@@ -6,7 +6,7 @@ It contains a collection of ROS2 packages for simulating and controlling the Uni
 
 ---
 
-## ⚠️ Caution 
+## ⚠️ Caution (Only After Git Clone)
 This repository is currently under active development and **frequent updates** may occur.
 
 To ensure you are working with the **latest version** of this project, please run the following command in your terminal:
