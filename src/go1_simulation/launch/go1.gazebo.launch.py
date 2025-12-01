@@ -5,7 +5,9 @@ from launch import LaunchDescription
 from launch.actions import (AppendEnvironmentVariable, DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction, SetEnvironmentVariable)
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+#from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+# PythonExpression 추가
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, PythonExpression
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
@@ -52,6 +54,7 @@ def generate_launch_description():
     world_file_name = LaunchConfiguration('world_file_name')
     use_gt_pose = LaunchConfiguration('use_gt_pose')
     use_gpu = LaunchConfiguration('use_gpu')
+    gui = LaunchConfiguration('gui') # [추가함]
 
     # Set the pose configuration variables
     x = LaunchConfiguration('x')
@@ -86,6 +89,12 @@ def generate_launch_description():
         name='use_gpu',
         default_value='true',
         description='Flag to enable using GPU for rendering')
+
+    # [추가함] GUI 옵션 정의
+    declare_gui_cmd = DeclareLaunchArgument(
+        name='gui',
+        default_value='true',
+        description='Flag to enable/disable Gazebo GUI (Headless mode if false)')
 
     # Pose arguments
     declare_x_cmd = DeclareLaunchArgument(
@@ -146,11 +155,25 @@ def generate_launch_description():
 
     # Launch Gazebo world
     # 'world_file' changes with launch argument 'world_file_name'
+    '''
     world_file = PathJoinSubstitution([world_pkg_share_dir, worlds_dir_name, world_file_name])
     start_gazebo_world_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')),
         launch_arguments=[('gz_args', [' -r ', world_file])]
+    )
+    '''
+    # [수정함] gui 값에 따라 -s(서버모드) 옵션을 붙일지 결정하는 로직
+    gz_args_list = PythonExpression([
+        "'-s -r ' if '", gui, "' == 'false' else ' -r '"
+    ])
+
+    world_file = PathJoinSubstitution([world_pkg_share_dir, worlds_dir_name, world_file_name])
+
+    start_gazebo_world_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')),
+        launch_arguments=[('gz_args', [gz_args_list, world_file])]
     )
 
     # Bridge ROS topics and Gazebo messages for establishing communication
@@ -233,6 +256,7 @@ def generate_launch_description():
     ld.add_action(declare_world_file_name_cmd)
     ld.add_action(declare_use_gt_pose_cmd)
     ld.add_action(declare_use_gpu_cmd)
+    ld.add_action(declare_gui_cmd) # [추가함]
 
     # Add pose arguments
     ld.add_action(declare_x_cmd)
