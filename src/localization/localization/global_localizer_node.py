@@ -185,7 +185,7 @@ class ParticleFilterLocalizer(Node):
         self.declare_parameter('x', 0.0)
         self.declare_parameter('y', 0.0)
         self.declare_parameter('yaw', 0.0)
-        self.declare_parameter('num_particles', 200) 
+        self.declare_parameter('num_particles', 80)  #200은 너무 많아서 줄임
         
         self.initial_x = self.get_parameter('x').value
         self.initial_y = self.get_parameter('y').value
@@ -211,7 +211,7 @@ class ParticleFilterLocalizer(Node):
         self.tf_broadcaster = TransformBroadcaster(self)
         
         # [중요 수정] 시뮬레이션 시간(Sim Time) 동기화를 위해 clock 전달 -> TF_OLD_DATA 에러 해결
-        self.tf_buffer = Buffer(clock=self.get_clock()) 
+        self.tf_buffer = Buffer(node=self)
         self.tf_listener = TransformListener(self.tf_buffer, self)
 
         # Subscribers

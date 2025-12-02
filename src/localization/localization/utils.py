@@ -198,3 +198,23 @@ def _update_alignment(current_pcd_paired, previous_pcd_paired):
     # Step 6: Compute translation
     t = current_centroid - R @ previous_centroid    
     return R, t
+
+# 추가함!
+def map_to_pcd(map_msg, threshold=50):
+    """
+    Convert OccupancyGrid map to 2D point cloud (numpy array).
+    """
+    width = map_msg.info.width
+    height = map_msg.info.height
+    resolution = map_msg.info.resolution
+    origin_x = map_msg.info.origin.position.x
+    origin_y = map_msg.info.origin.position.y
+    
+    data = np.array(map_msg.data).reshape((height, width))
+    
+    y_idxs, x_idxs = np.where(data >= threshold)
+    
+    x_coords = origin_x + (x_idxs + 0.5) * resolution
+    y_coords = origin_y + (y_idxs + 0.5) * resolution
+    
+    return np.column_stack((x_coords, y_coords))

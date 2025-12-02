@@ -3,11 +3,21 @@
 <package format="3">
   <name>localization</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Localization package for Go1 robot</description>
   <maintainer email="samuelschung@naver.com">daniel</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclpy</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf_transformations</depend>
+
+  <exec_depend>python3-scipy</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
@@ -16,9 +26,3 @@
     <build_type>ament_cmake</build_type>
   </export>
 </package>
-
-# 추가로 필요한 것
-<depend>rclpy</depend>
-  <depend>geometry_msgs</depend>
-  <exec_depend>python3-scipy</exec_depend> 
-  <exec_depend>python3-numpy</exec_depend>

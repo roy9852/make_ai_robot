@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+'''
 """
 Launch file for global localization node
 
@@ -46,12 +46,12 @@ def generate_launch_description():
     ld.add_action(global_localizer_node)
 
     return ld
-
+'''
     
 
 
 #수정예정인 코드
-#!/usr/bin/env python3
+
 
 """
 Launch file for global localization node
