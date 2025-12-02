@@ -16,3 +16,9 @@
     <build_type>ament_cmake</build_type>
   </export>
 </package>
+
+# 추가로 필요한 것
+<depend>rclpy</depend>
+  <depend>geometry_msgs</depend>
+  <exec_depend>python3-scipy</exec_depend> 
+  <exec_depend>python3-numpy</exec_depend>

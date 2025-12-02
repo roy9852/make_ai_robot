@@ -47,7 +47,9 @@ def generate_launch_description():
 
     return ld
 
-'''
+    
+
+
 #수정예정인 코드
 #!/usr/bin/env python3
 
@@ -103,4 +105,3 @@ def generate_launch_description():
 # - 자동 보정 기능을 넣으려면 launch 인자 대신 노드에서 실시간 pose를 받아서 처리
 # - launch 파일은 그대로 두고, 노드에서 동적으로 pose를 갱신
 # ---------------------------
-'''

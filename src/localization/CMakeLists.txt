@@ -14,6 +14,7 @@ find_package(ament_cmake REQUIRED)
 install(
   DIRECTORY 
     launch
+    maps #추가
   DESTINATION share/${PROJECT_NAME}
 )
 
