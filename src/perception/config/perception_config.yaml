@@ -1,0 +1,7 @@
+perception_node:
+  ros__parameters:
+    model_filename: "bestmodel.pt"
+    confidence_threshold: 0.5
+    bark_distance_threshold: 3.0
+    target_classes: ["apple", "banana", "pizza"]
+    debug_mode: true
