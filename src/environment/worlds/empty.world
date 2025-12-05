@@ -60,11 +60,32 @@
     <!-- ===== OBJECT GRID (0.5m spacing) ===== -->
 
     <!-- Row 0: apple / banana / pizza / bad_apple -->
+        <!-- ===== OBJECT GRID WITH DISHES (0.5m spacing) ===== -->
+
+    <!-- Row 0: apple_good -->
+    <model name="dish_apple_good">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>0.0 0.0 0.20 0 0 0</pose>
+      </include>
+    </model>
+
     <model name="apple_good">
       <include>
         <uri>model://AppleGood</uri>
         <static>true</static>
         <pose>0.0 0.0 0.25 0 0 0</pose>
+      </include>
+    </model>
+
+
+    <!-- banana_good -->
+    <model name="dish_banana_good">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>0.5 0.0 0.20 0 0 0</pose>
       </include>
     </model>
 
@@ -76,11 +97,31 @@
       </include>
     </model>
 
+
+    <!-- pizza_good -->
+    <model name="dish_pizza_good">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>1.0 0.0 0.20 0 0 0</pose>
+      </include>
+    </model>
+
     <model name="pizza_good">
       <include>
         <uri>model://PizzaGood</uri>
         <static>true</static>
         <pose>1.0 0.0 0.25 0 0 0</pose>
+      </include>
+    </model>
+
+
+    <!-- apple_bad -->
+    <model name="dish_apple_bad">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>1.5 0.0 0.20 0 0 0</pose>
       </include>
     </model>
 
@@ -92,12 +133,31 @@
       </include>
     </model>
 
-    <!-- Row 1: bad_banana / bad_pizza / toilet / nurse -->
+
+    <!-- Row 1: banana_bad -->
+    <model name="dish_banana_bad">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>0.0 -0.5 0.20 0 0 0</pose>
+      </include>
+    </model>
+
     <model name="banana_bad">
       <include>
         <uri>model://BananaBad</uri>
         <static>true</static>
         <pose>0.0 -0.5 0.25 0 0 0</pose>
+      </include>
+    </model>
+
+
+    <!-- pizza_bad -->
+    <model name="dish_pizza_bad">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>0.5 -0.5 0.20 0 0 0</pose>
       </include>
     </model>
 
