@@ -57,106 +57,142 @@
       </uri>
     </include>
 
-    <model name='cone_1'>
-      <pose>3.0 0.0 0.5 0 0 0</pose>
-      <link name='cone_link'>
-        <inertial>
-          <inertia>
-            <ixx>0.074999999999999997</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.074999999999999997</iyy>
-            <iyz>0</iyz>
-            <izz>0.074999999999999997</izz>
-          </inertia>
-          <mass>1</mass>
-          <pose>0 0 0 0 0 0</pose>
-        </inertial>
-        <collision name='cone_collision'>
-          <geometry>
-            <cone>
-              <radius>0.5</radius>
-              <length>1</length>
-            </cone>
-          </geometry>
-          <surface>
-            <friction>
-              <ode/>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
-        <visual name='cone_visual'>
-          <geometry>
-            <cone>
-              <radius>0.5</radius>
-              <length>1</length>
-            </cone>
-          </geometry>
-          <material>
-            <ambient>0.300000012 0.300000012 0.300000012 1</ambient>
-            <diffuse>0.699999988 0.699999988 0.699999988 1</diffuse>
-            <specular>1 1 1 1</specular>
-          </material>
-        </visual>
-        <pose>0 0 0 0 0 0</pose>
-        <enable_wind>false</enable_wind>
-      </link>
-      <static>false</static>
-      <self_collide>false</self_collide>
+    <!-- ===== OBJECT GRID (0.5m spacing) ===== -->
+
+    <!-- Row 0: apple / banana / pizza / bad_apple -->
+    <model name="apple_good">
+      <include>
+        <uri>model://AppleGood</uri>
+        <static>true</static>
+        <pose>0.0 0.0 0.25 0 0 0</pose>
+      </include>
     </model>
 
+    <model name="banana_good">
+      <include>
+        <uri>model://BananaGood</uri>
+        <static>true</static>
+        <pose>0.5 0.0 0.25 0 0 0</pose>
+      </include>
+    </model>
 
-    <model name='cone_2'>
-      <pose>0.0 3.0 0.5 0 0 0</pose>
-      <link name='cone_link'>
-        <inertial>
-          <inertia>
-            <ixx>0.074999999999999997</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.074999999999999997</iyy>
-            <iyz>0</iyz>
-            <izz>0.074999999999999997</izz>
-          </inertia>
-          <mass>1</mass>
-          <pose>0 0 0 0 0 0</pose>
-        </inertial>
-        <collision name='cone_collision'>
+    <model name="pizza_good">
+      <include>
+        <uri>model://PizzaGood</uri>
+        <static>true</static>
+        <pose>1.0 0.0 0.25 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="apple_bad">
+      <include>
+        <uri>model://AppleBad</uri>
+        <static>true</static>
+        <pose>1.5 0.0 0.25 0 0 0</pose>
+      </include>
+    </model>
+
+    <!-- Row 1: bad_banana / bad_pizza / toilet / nurse -->
+    <model name="banana_bad">
+      <include>
+        <uri>model://BananaBad</uri>
+        <static>true</static>
+        <pose>0.0 -0.5 0.25 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="pizza_bad">
+      <include>
+        <uri>model://PizzaBad</uri>
+        <static>true</static>
+        <pose>0.5 -0.5 0.25 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="toilet_1">
+      <include>
+        <uri>model://Toilet</uri>
+        <static>true</static>
+        <pose>1.0 -0.5 0.0 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="nurse_1">
+      <include>
+        <uri>model://Scrubs</uri>
+        <static>true</static>
+        <pose>1.5 -0.5 0.0 0 0 0</pose>
+      </include>
+    </model>
+
+    <!-- Row 2: red / blue / green cone / box -->
+    <model name="cone_red_1">
+      <include>
+        <uri>model://red_cone</uri>
+        <static>true</static>
+        <pose>0.0 -1.0 0 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="cone_blue_1">
+      <include>
+        <uri>model://blue_cone</uri>
+        <static>true</static>
+        <pose>0.5 -1.0 0 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="cone_green_1">
+      <include>
+        <uri>model://green_cone</uri>
+        <static>true</static>
+        <pose>1.0 -1.0 0 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="box_1">
+      <include>
+        <uri>model://box</uri>
+        <static>false</static>
+        <pose>1.5 -1.0 0.5 0 0 0</pose>
+      </include>
+    </model>
+
+    <!-- Row 3: tile_red (goal_line_box) / stop_sign -->
+    <!-- tile_red: 병원 맵의 goal_line_box를 원점 근처로 옮긴 버전 -->
+    <model name="tile_red">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
           <geometry>
-            <cone>
-              <radius>0.5</radius>
-              <length>1</length>
-            </cone>
-          </geometry>
-          <surface>
-            <friction>
-              <ode/>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
-        <visual name='cone_visual'>
-          <geometry>
-            <cone>
-              <radius>0.5</radius>
-              <length>1</length>
-            </cone>
+            <box>
+              <size>0.5 0.5 0.05</size>
+            </box>
           </geometry>
           <material>
-            <ambient>0.300000012 0.300000012 0.300000012 1</ambient>
-            <diffuse>0.699999988 0.699999988 0.699999988 1</diffuse>
-            <specular>1 1 1 1</specular>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0 0 0 1</emissive>
           </material>
         </visual>
-        <pose>0 0 0 0 0 0</pose>
-        <enable_wind>false</enable_wind>
       </link>
-      <static>false</static>
-      <self_collide>false</self_collide>
+      <!-- 바닥 바로 아래에 깔리는 타일 느낌으로 z를 약간 음수로 -->
+      <pose>0.0 -1.5 -0.025 0 0 0</pose>
     </model>
+
+    <!-- stop_sign: 병원 맵의 circle_sign -->
+    <model name="stop_sign_1">
+      <include>
+        <uri>model://circle_sign</uri>
+        <static>true</static>
+        <pose>0.5 -1.5 0.0 0 0 0</pose>
+      </include>
+    </model>
+   
+
+
+    
 
 
 
