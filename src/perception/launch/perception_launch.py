@@ -27,7 +27,7 @@ def generate_launch_description():
     #Path to Perception configuration file
     config_file = os.path.join(perception_pkg_dir, 'config', 'perception_config.yaml')
     #Path to Models directory
-    models_dir = os.path.join(perception_pkg_dir, 'models')
+    models_dir = os.path.join(perception_pkg_dir, 'model')
     
     # Create path tracker node
     perception_node = Node(

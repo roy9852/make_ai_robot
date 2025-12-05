@@ -13,12 +13,12 @@ class PerceptionNode(Node):
         super().__init__('perception_node')
 
         #Declare parameters
-        self.declare_parameter('model_filename', 'best.pt')
+        self.declare_parameter('model_filename', 'bestmodel.pt')
         self.declare_parameter('confidence_threshold', 0.5)
         self.declare_parameter('bark_distance_threshold', 3.0)
         self.declare_parameter('target_classes', ["apple", "banana", "pizza", "bad_apple", "bad_banana", "bad_pizza", 
                                                     "toilet", "nurse", "cone_red", "cone_blue", "cone_green", "box", 
-                                                    "tile_red", "stop_sign"]
+                                                    "tile_red", "stop_sign"])
         self.declare_parameter('debug_mode', False)
         self.declare_parameter('model_dir', '') 
 
