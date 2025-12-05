@@ -1,0 +1,9 @@
+simulator_node:
+  ros__parameters:
+    resolution: 1.0
+    start_x: 1.5
+    start_y: 1.5
+
+path_planner_node:
+  ros__parameters:
+    resolution: 1.0

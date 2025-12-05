@@ -3,5 +3,3 @@ install/
 log/
 .vscode/
 v-hacd/
-#/src/localization/
-/src/astar_planner/
