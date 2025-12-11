@@ -53,8 +53,8 @@ class OdomLocalizerNode(Node):
         self.current_pcd = None
 
         # Parameters for ICP registration
-        self.max_iterations = 10
-        self.tolerance = 1e-6
+        self.max_iterations = 5
+        self.tolerance = 1e-5
         self.distance_threshold = 0.2
 
         # Current pose in the odom frame
