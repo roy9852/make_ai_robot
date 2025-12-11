@@ -371,7 +371,7 @@ class ParticleFilterLocalizer(Node):
         self.declare_parameter('x', 0.0)
         self.declare_parameter('y', 0.0)
         self.declare_parameter('yaw', 0.0)
-        self.declare_parameter('num_particles', 80) 
+        self.declare_parameter('num_particles', 500) 
         
         self.initial_x = self.get_parameter('x').value
         self.initial_y = self.get_parameter('y').value
@@ -386,7 +386,7 @@ class ParticleFilterLocalizer(Node):
                 self.get_logger().warn(f"Reduced particles to {self.num_particles} for performance.")
 
         # Noise Parameters (Motion Model)
-        self.odom_noise = [0.05, 0.05, 0.02] # x, y, yaw std_dev
+        self.odom_noise = [0.2, 0.2, 0.02] # x, y, yaw std_dev
         
         # Sensor Model Parameters
         self.scan_step = 15

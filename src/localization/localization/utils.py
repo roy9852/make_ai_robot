@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+'''
 """
 Utils like transforming pose and transform to 4x4 transformation matrix, converting laser scan to point cloud, ICP registration, etc.
 """
@@ -218,3 +218,158 @@ def map_to_pcd(map_msg, threshold=50):
     y_coords = origin_y + (y_idxs + 0.5) * resolution
     
     return np.column_stack((x_coords, y_coords))
+'''
+
+#12/11
+#!/usr/bin/env python3
+"""
+Utils for localization: 
+- Transformation matrix conversions
+- LiDAR scan processing
+- Optimized ICP (KDTree)
+"""
+
+import tf_transformations
+from sensor_msgs.msg import LaserScan
+import numpy as np
+from scipy.spatial import cKDTree  # [핵심] 고속 연산을 위한 라이브러리
+
+def pose_to_matrix(pose):
+    """Convert pose [x, y, z, qx, qy, qz, qw] to 4x4 transformation matrix."""
+    T = np.eye(4)
+    T[:3, 3] = pose[:3]
+    quat = pose[3:]
+    T[:3, :3] = tf_transformations.quaternion_matrix(quat)[:3, :3]
+    return T
+
+def transform_to_matrix(transform):
+    """Convert geometry_msgs Transform to 4x4 transformation matrix."""
+    T = np.eye(4)
+    T[0, 3] = transform.translation.x
+    T[1, 3] = transform.translation.y
+    T[2, 3] = transform.translation.z
+    quat = [transform.rotation.x, transform.rotation.y, 
+            transform.rotation.z, transform.rotation.w]
+    T[:3, :3] = tf_transformations.quaternion_matrix(quat)[:3, :3]
+    return T
+
+def scan_to_pcd(msg: LaserScan):
+    """
+    Process ROS2 scan message to range and angle data.
+    Returns: (N, 2) numpy array
+    """
+    ranges = np.array(msg.ranges)
+    angles = np.arange(
+        msg.angle_min, 
+        msg.angle_max + msg.angle_increment/2, 
+        msg.angle_increment
+    )
+
+    # 길이 맞추기
+    if len(angles) > len(ranges):
+        angles = angles[:len(ranges)]
+    elif len(ranges) > len(angles):
+        ranges = ranges[:len(angles)]
+
+    # 유효하지 않은 값(inf, nan) 제거
+    valid_indices = np.isfinite(ranges) & (ranges > msg.range_min) & (ranges < msg.range_max)
+    ranges = ranges[valid_indices]
+    angles = angles[valid_indices]
+    
+    # Polar -> Cartesian 변환
+    pcd = np.column_stack((ranges * np.cos(angles), ranges * np.sin(angles)))
+    return pcd
+
+def map_to_pcd(map_msg, threshold=50):
+    """
+    Convert OccupancyGrid map to 2D point cloud.
+    """
+    width = map_msg.info.width
+    height = map_msg.info.height
+    resolution = map_msg.info.resolution
+    origin_x = map_msg.info.origin.position.x
+    origin_y = map_msg.info.origin.position.y
+    
+    data = np.array(map_msg.data).reshape((height, width))
+    
+    # 점유된 칸(장애물)만 추출
+    y_idxs, x_idxs = np.where(data >= threshold)
+    
+    x_coords = origin_x + (x_idxs + 0.5) * resolution
+    y_coords = origin_y + (y_idxs + 0.5) * resolution
+    
+    return np.column_stack((x_coords, y_coords))
+
+def icp_2d(previous_pcd, current_pcd, max_iterations=5, tolerance=1e-3, distance_threshold=None):
+    """
+    [Optimized] Iterative Closest Point (ICP) using Scipy KDTree.
+    Aligns current_pcd (Source) to previous_pcd (Target).
+    """
+    # 점이 너무 적으면 계산 불가 (Identity 반환)
+    if len(previous_pcd) < 5 or len(current_pcd) < 5:
+        return np.eye(3)
+
+    R = np.eye(2)
+    # 초기 위치: 중심점(Centroid) 차이로 빠른 시작
+    t = np.mean(previous_pcd, axis=0) - np.mean(current_pcd, axis=0)
+    
+    # [고속화 핵심] 타겟 포인트 클라우드로 KDTree 생성 (루프 밖에서 1회 수행)
+    tree = cKDTree(previous_pcd)
+    
+    prev_error = np.inf
+
+    for i in range(max_iterations):
+        # 1. 변환 적용 (Apply Transform)
+        current_aligned = (current_pcd @ R.T) + t
+        
+        # 2. 가장 가까운 점 검색 (Nearest Neighbor Search via KDTree)
+        distances, indices = tree.query(current_aligned, k=1)
+        
+        # 3. 거리 임계값 적용 (Thresholding)
+        if distance_threshold is not None:
+            valid_mask = distances < distance_threshold
+            # 유효한 매칭 점이 너무 적으면 중단
+            if np.sum(valid_mask) < 3:
+                break
+            source_points = current_aligned[valid_mask]
+            target_points = previous_pcd[indices[valid_mask]]
+        else:
+            source_points = current_aligned
+            target_points = previous_pcd[indices]
+
+        # 매칭된 점이 부족하면 중단
+        if len(source_points) < 3:
+            break
+
+        # 4. SVD를 이용한 최적 변환 계산 (Least Squares)
+        mu_s = np.mean(source_points, axis=0)
+        mu_t = np.mean(target_points, axis=0)
+        
+        H = (source_points - mu_s).T @ (target_points - mu_t)
+        U, _, Vt = np.linalg.svd(H)
+        
+        dR = Vt.T @ U.T
+        
+        # 반사(Reflection) 행렬 보정 (Det가 -1이면 뒤집힘 방지)
+        if np.linalg.det(dR) < 0:
+            Vt[1, :] *= -1
+            dR = Vt.T @ U.T
+            
+        dt = mu_t - dR @ mu_s
+
+        # 5. 변환 행렬 누적 업데이트
+        R = dR @ R
+        t = dR @ t + dt
+        
+        # 6. 수렴 여부 확인 (Error check)
+        current_error = np.mean(distances**2)
+        if abs(prev_error - current_error) < tolerance:
+            break
+        prev_error = current_error
+    
+    # 3x3 변환 행렬 구성 (SE2)
+    T = np.eye(3)
+    T[:2, :2] = R
+    T[:2, 2] = t
+    
+    return T
