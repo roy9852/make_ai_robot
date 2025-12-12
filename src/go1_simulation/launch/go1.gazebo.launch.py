@@ -10,7 +10,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, PythonExpression
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-
+from launch.actions import TimerAction
 
 def generate_launch_description():
     """
@@ -267,16 +267,17 @@ def generate_launch_description():
     ld.add_action(declare_yaw_cmd)
 
     # Add the actions to the launch description
-    ld.add_action(set_gpu_render_cmd)
-    ld.add_action(set_nv_offload_cmd)
-    ld.add_action(set_glx_vendor_cmd)
+    # ld.add_action(set_gpu_render_cmd)
+    # ld.add_action(set_nv_offload_cmd)
+    # ld.add_action(set_glx_vendor_cmd)
     ld.add_action(set_gz_resource_path)
-    ld.add_action(start_gazebo_world_cmd)
-    ld.add_action(start_gazebo_ros_bridge_cmd)
-    ld.add_action(robot_state_publisher_cmd)
-    ld.add_action(load_controllers_cmd)
-    ld.add_action(start_gazebo_ros_spawner_cmd)
-    ld.add_action(go1_pointcloud_publisher_cmd)
-    ld.add_action(go1_gt_pose_publisher_cmd)
+
+    ld.add_action(TimerAction(period=3.0, actions=[start_gazebo_world_cmd]))
+    ld.add_action(TimerAction(period=5.0, actions=[start_gazebo_ros_bridge_cmd]))
+    ld.add_action(TimerAction(period=7.0, actions=[robot_state_publisher_cmd]))
+    ld.add_action(TimerAction(period=9.0, actions=[load_controllers_cmd]))
+    ld.add_action(TimerAction(period=11.0, actions=[start_gazebo_ros_spawner_cmd]))
+    ld.add_action(TimerAction(period=13.0, actions=[go1_pointcloud_publisher_cmd]))
+    ld.add_action(TimerAction(period=15.0, actions=[go1_gt_pose_publisher_cmd]))
 
     return ld
