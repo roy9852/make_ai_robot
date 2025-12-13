@@ -2,7 +2,7 @@
 
 import os
 from launch import LaunchDescription
-from launch.actions import (AppendEnvironmentVariable, DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction, SetEnvironmentVariable)
+from launch.actions import (AppendEnvironmentVariable, DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction, SetEnvironmentVariable, TimerAction)
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
@@ -52,6 +52,8 @@ def generate_launch_description():
     world_file_name = LaunchConfiguration('world_file_name')
     use_gt_pose = LaunchConfiguration('use_gt_pose')
     use_gpu = LaunchConfiguration('use_gpu')
+    spawn_delay = LaunchConfiguration('spawn_delay')
+
 
     # Set the pose configuration variables
     x = LaunchConfiguration('x')
@@ -86,6 +88,11 @@ def generate_launch_description():
         name='use_gpu',
         default_value='true',
         description='Flag to enable using GPU for rendering')
+    
+    declare_spawn_delay_cmd = DeclareLaunchArgument(
+        name='spawn_delay',
+        default_value='50.0',
+        description='Delay (sec) before spawning robot into Gazebo')
 
     # Pose arguments
     declare_x_cmd = DeclareLaunchArgument(
@@ -153,6 +160,7 @@ def generate_launch_description():
         launch_arguments=[('gz_args', [' -r ', world_file])]
     )
 
+
     # Bridge ROS topics and Gazebo messages for establishing communication
     # This enables sensors (Gazebo -> ROS) and motors (ROS -> Gazebo). 
     # Sensor configs are defined in 'config/ros_gz_bridge.yaml'
@@ -206,6 +214,11 @@ def generate_launch_description():
             '-P', pitch,
             '-Y', yaw
         ])
+    
+    delayed_gazebo_ros_spawner_cmd = TimerAction(
+        period=spawn_delay,
+        actions=[start_gazebo_ros_spawner_cmd]
+    )   
 
     # Publish the pointcloud from the depth camera (face and top)
     go1_pointcloud_publisher_cmd = Node(
@@ -233,6 +246,7 @@ def generate_launch_description():
     ld.add_action(declare_world_file_name_cmd)
     ld.add_action(declare_use_gt_pose_cmd)
     ld.add_action(declare_use_gpu_cmd)
+    ld.add_action(declare_spawn_delay_cmd)
 
     # Add pose arguments
     ld.add_action(declare_x_cmd)
@@ -251,7 +265,8 @@ def generate_launch_description():
     ld.add_action(start_gazebo_ros_bridge_cmd)
     ld.add_action(robot_state_publisher_cmd)
     ld.add_action(load_controllers_cmd)
-    ld.add_action(start_gazebo_ros_spawner_cmd)
+    # ld.add_action(start_gazebo_ros_spawner_cmd)
+    ld.add_action(delayed_gazebo_ros_spawner_cmd)
     ld.add_action(go1_pointcloud_publisher_cmd)
     ld.add_action(go1_gt_pose_publisher_cmd)
 
