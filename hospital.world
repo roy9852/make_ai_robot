@@ -62,32 +62,255 @@
       <direction>-0.5 0.1 -0.9</direction>
     </light>
     
-    <!-- Ground plane -->
-    <!-- <model name="ground_plane">
+    <!-- MISSION ASSETS -->
+    <!-- MISSION ASSETS -->
+    <!-- MISSION ASSETS -->
+
+    <!-- MISSION 3 -->
+
+    <model name="blue_cone_1">
+      <include>
+        <uri>model://blue_cone</uri>
+        <static>true</static>
+        <pose>0.2 16.5 0 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="red_cone_1">
+      <include>
+        <uri>model://red_cone</uri>
+        <static>true</static>
+        <pose>1.2 16.5 0 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="green_cone_1">
+      <include>
+        <uri>model://green_cone</uri>
+        <static>true</static>
+        <pose>2.2 16.5 0 0 0 0</pose>
+      </include>
+    </model>
+
+    <!-- MISSION 4 -->
+
+    <!-- <model name="danger_sign_1">
+      <include>
+        <uri>model://danger_sign</uri>
+        <static>true</static>
+        <pose>1.0 12.0 0 0 0 0</pose>
+      </include>
+    </model> -->
+
+    <model name="circle_sign_1">
+      <include>
+        <uri>model://circle_sign</uri>
+        <static>true</static>
+        <pose>7.5 11.5 0 0 0 2.5</pose>
+      </include>
+    </model>
+
+    <!-- MISSION 5 -->
+  
+    <model name="box_1">
+      <include>
+        <uri>model://box</uri>
+        <static>false</static>
+        <pose>2 12.0 0.5 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="goal_line_box">
       <static>true</static>
       <link name="link">
-        <collision name="collision">
-          <geometry>
-            <plane>
-              <normal>0 0 1</normal>
-              <size>100 100</size>
-            </plane>
-          </geometry>
-        </collision>
         <visual name="visual">
           <geometry>
-            <plane>
-              <normal>0 0 1</normal>
-              <size>100 100</size>
-            </plane>
+            <box>
+              <size>1 1 1</size>
+            </box>
           </geometry>
           <material>
-            <ambient>0.8 0.8 0.8 1</ambient>
-            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0 0 0 1</emissive>
           </material>
         </visual>
+        <!-- <collision name="collision">
+          <geometry>
+            <box/>
+          </geometry>
+        </collision> -->
       </link>
-    </model> -->
+      <pose>0 12 -0.499 0 0 0</pose>
+    </model>
+
+    <!-- MISSION 2 -->
+
+    <model name="room1_dish">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>4.0 18.0 0.2 0 0 0</pose>
+      </include>
+    </model>  
+
+    <model name="room1_food">
+      <include>
+        <uri>model://BananaGood</uri>
+        <static>true</static>
+        <pose>4.0 18.0 0.25 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="room2_dish">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>-8.0 15.0 0.6 0 0 0</pose>
+      </include>
+    </model>  
+
+    <model name="room2_food">
+      <include>
+        <uri>model://PizzaBad</uri>
+        <static>true</static>
+        <pose>-8.0 15.0 0.65 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="room3_dish">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>-12.0 10.0 0.4 0 0 0</pose>
+      </include>
+    </model>  
+
+    <model name="room3_food">
+      <include>
+        <uri>model://AppleGood</uri>
+        <static>true</static>
+        <pose>-12.0 10.0 0.45 0 0 0</pose>
+      </include>
+    </model>
+
+     <!-- <model name="room4_dish">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>12.0 6.0 0.3 0 0 0</pose>
+      </include>
+    </model>  
+
+    <model name="room4_food">
+      <include>
+        <uri>model://PizzaGood</uri>
+        <static>true</static>
+        <pose>12.0 6.0 0.35 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="room5_dish">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>-9.0 -7.0 0.5 0 0 0</pose>
+      </include>
+    </model>  
+
+    <model name="room5_food">
+      <include>
+        <uri>model://AppleBad</uri>
+        <static>true</static>
+        <pose>-9.0 -7.0 0.55 0 0 0</pose>
+      </include>
+    </model>
+    
+    <model name="room6_dish">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>11.0 -20.0 0.2 0 0 0</pose>
+      </include>
+    </model>  
+
+    <model name="room6_food">
+      <include>
+        <uri>model://BananaGood</uri>
+        <static>true</static>
+        <pose>11.0 -20.0 0.25 0 0 0</pose>
+      </include>
+    </model>
+
+    <model name="room7_dish">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>-7.0 -28.0 0.1 0 0 0</pose>
+      </include>
+    </model>  
+
+    <model name="room7_food">
+      <include>
+        <uri>model://AppleBad</uri>
+        <static>true</static>
+        <pose>-7.0 -28.0 0.15 0 0 0</pose>
+      </include>
+    </model>  
+
+    <model name="room8_dish">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>-1.0 -1.0 0.4 0 0 0</pose>
+      </include>
+    </model>  
+
+    <model name="room8_food">
+      <include>
+        <uri>model://PizzaBad</uri>
+        <static>true</static>
+        <pose>-1.0 -1.0 0.45 0 0 0</pose>
+      </include>
+    </model> 
+
+    <model name="room9_dish">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>2.0 -11.0 0.3 0 0 0</pose>
+      </include>
+    </model>  
+
+    <model name="room9_food">
+      <include>
+        <uri>model://BananaBad</uri>
+        <static>true</static>
+        <pose>2.0 -11.0 0.35 0 0 0</pose>
+      </include>
+    </model> 
+
+    <model name="room10_dish">
+      <include>
+        <uri>model://WhiteDish</uri>
+        <static>true</static>
+        <pose>2.0 -17.0 0.50 0 0 0</pose>
+      </include>
+    </model>  
+
+    <model name="room10_food">
+      <include>
+        <uri>model://AppleGood</uri>
+        <static>true</static>
+        <pose>2.0 -17.0 0.55 0 0 0</pose>
+      </include>
+    </model>                                    -->
+
+    <!-- DEFAULT ENVIRONMENT ASSETS -->
+    <!-- DEFAULT ENVIRONMENT ASSETS -->
+    <!-- DEFAULT ENVIRONMENT ASSETS -->
+
 
     <model name="aws_robomaker_hospital_floor_01_floor_1">
       <include>
@@ -1082,72 +1305,6 @@
         <static>true</static>
         <pose>8.35378 9.64852 -3e-06 -6e-06 0 0</pose>
       </include>
-    </model>
-    <model name="blue_cone_1">
-      <include>
-        <uri>model://blue_cone</uri>
-        <static>true</static>
-        <pose>0.2 16.5 0 0 0 0</pose>
-      </include>
-    </model>
-    <model name="red_cone_1">
-      <include>
-        <uri>model://red_cone</uri>
-        <static>true</static>
-        <pose>1.2 16.5 0 0 0 0</pose>
-      </include>
-    </model>
-    <model name="green_cone_1">
-      <include>
-        <uri>model://green_cone</uri>
-        <static>true</static>
-        <pose>2.2 16.5 0 0 0 0</pose>
-      </include>
-    </model>
-    <model name="box_1">
-      <include>
-        <uri>model://box</uri>
-        <static>false</static>
-        <pose>0 12.0 0.5 0 0 0</pose>
-      </include>
-    </model>
-    <!-- <model name="danger_sign_1">
-      <include>
-        <uri>model://danger_sign</uri>
-        <static>true</static>
-        <pose>1.0 12.0 0 0 0 0</pose>
-      </include>
-    </model> -->
-    <model name="circle_sign_1">
-      <include>
-        <uri>model://circle_sign</uri>
-        <static>true</static>
-        <pose>0 10.0 0 0 0 0</pose>
-      </include>
-    </model>
-    <model name="goal_line_box">
-      <static>true</static>
-      <link name="link">
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>1 1 1</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>1 0 0 1</ambient>
-            <diffuse>1 0 0 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-        </visual>
-        <collision name="collision">
-          <geometry>
-            <box/>
-          </geometry>
-        </collision>
-      </link>
-      <pose>5 12 -0.499 0 0 0</pose>
     </model>
   </world>
 </sdf>
