@@ -630,9 +630,9 @@ void PathTracker::_UpdateState() {
     auto new_state = _trans.GetState(pos, orient, twist);
     
     // Output velocity
-    std::cout << "Current velocity: " << twist.linear.x << " m/s, angular.z: " << twist.angular.z << " rad/s" << std::endl;
-    std::cout << "  - pose: (" << pos.x << ", " << pos.y << ", " << pos.z << ")" << std::endl;
-    std::cout << "  - twist original: linear.x=" << twist.linear.x << ", angular.z=" << twist.angular.z << std::endl;
+    // std::cout << "Current velocity: " << twist.linear.x << " m/s, angular.z: " << twist.angular.z << " rad/s" << std::endl;
+    // std::cout << "  - pose: (" << pos.x << ", " << pos.y << ", " << pos.z << ")" << std::endl;
+    // std::cout << "  - twist original: linear.x=" << twist.linear.x << ", angular.z=" << twist.angular.z << std::endl;
     
     auto distance = _state.GetDistance(new_state);
 

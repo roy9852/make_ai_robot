@@ -36,10 +36,10 @@ void PathTracker::_LocalizationCallback(const geometry_msgs::msg::PoseStamped::S
     _trans.SetOrient(msg->pose.orientation);
     
     // Check if this is the first call
-    RCLCPP_INFO(get_logger(), "=== Localization Callback ===");
-    RCLCPP_INFO(get_logger(), "  Previous pose initialized: %s", (_prev_pose_initialized ? "true" : "false"));
-    RCLCPP_INFO(get_logger(), "  Current position: (%.3f, %.3f, %.3f)", msg->pose.position.x, msg->pose.position.y, msg->pose.position.z);
-    RCLCPP_INFO(get_logger(), "  Header stamp: %d.%09d", msg->header.stamp.sec, msg->header.stamp.nanosec);
+    // RCLCPP_INFO(get_logger(), "=== Localization Callback ===");
+    // RCLCPP_INFO(get_logger(), "  Previous pose initialized: %s", (_prev_pose_initialized ? "true" : "false"));
+    // RCLCPP_INFO(get_logger(), "  Current position: (%.3f, %.3f, %.3f)", msg->pose.position.x, msg->pose.position.y, msg->pose.position.z);
+    // RCLCPP_INFO(get_logger(), "  Header stamp: %d.%09d", msg->header.stamp.sec, msg->header.stamp.nanosec);
     
     // Calculate twist from pose changes
     geometry_msgs::msg::Twist calculated_twist = _CalculateTwistFromPose(msg);
@@ -251,11 +251,11 @@ void PathTracker::PubTrackingInfo(double cte) {
         _avg_state = _avg_state * (_average - 1) / _average + _state * 1 / _average;
         _avg_cte = _avg_cte * (_average - 1) / _average + cte * 1 / _average;
 
-        std::cout << prColor::Yellow << "Tracking Info: " << prColor::End << std::endl;
-        std::cout << prColor::Yellow << std::setw(20) << "\tCur CTE" << ": " << cte << prColor::End << std::endl;
-        std::cout << prColor::Yellow << std::setw(20) << "\tCur Vel" << ": " << _state.v << prColor::End << std::endl;
-        std::cout << prColor::Yellow << std::setw(20) << "\tAvg CTE" << ": " << _avg_cte << prColor::End << std::endl;
-        std::cout << prColor::Yellow << std::setw(20) << "\tAvg Vel" << ": " << _avg_state.v << prColor::End << std::endl;
+        // std::cout << prColor::Yellow << "Tracking Info: " << prColor::End << std::endl;
+        // std::cout << prColor::Yellow << std::setw(20) << "\tCur CTE" << ": " << cte << prColor::End << std::endl;
+        // std::cout << prColor::Yellow << std::setw(20) << "\tCur Vel" << ": " << _state.v << prColor::End << std::endl;
+        // std::cout << prColor::Yellow << std::setw(20) << "\tAvg CTE" << ": " << _avg_cte << prColor::End << std::endl;
+        // std::cout << prColor::Yellow << std::setw(20) << "\tAvg Vel" << ": " << _avg_state.v << prColor::End << std::endl;
     }
 }
 

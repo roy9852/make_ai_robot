@@ -34,7 +34,7 @@ public:
     
     // Subscribers
     map_sub_ = this->create_subscription<nav_msgs::msg::OccupancyGrid>(
-      "/map", 10,
+      "/map",
       rclcpp::QoS(rclcpp::KeepLast(1))
         .transient_local()
         .reliable(),
