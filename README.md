@@ -958,15 +958,21 @@ The robot rotate around her. The rotation direction is not important.
 
 ## 🥇 1st Place - Team 9
 
-<video src="https://github.com/roy9852/make_ai_robot/raw/main/images/video_1st_low.mp4" controls width="600"></video>
+[▶️ Watch Video](https://github.com/roy9852/make_ai_robot/raw/main/images/video_1st_low.mp4)
+
+<img src="images/thumbnail_video_1st_low.png" width="600"/>
 
 ## 🥈 2nd Place - Team 5
 
-<video src="https://github.com/roy9852/make_ai_robot/raw/main/images/video_2nd_low.mp4" controls width="600"></video>
+[▶️ Watch Video](https://github.com/roy9852/make_ai_robot/raw/main/images/video_2nd_low.mp4)
+
+<img src="images/thumbnail_video_2nd_low.png" width="600"/>
 
 ## 🥉 3rd Place - Team 3
 
-<video src="https://github.com/roy9852/make_ai_robot/raw/main/images/video_3rd_low.mp4" controls width="600"></video>
+[▶️ Watch Video](https://github.com/roy9852/make_ai_robot/raw/main/images/video_3rd_low.mp4)
+
+<img src="images/thumbnail_video_3rd_low.png" width="600"/>
 
 # 🏆 Competition Result Table
 
