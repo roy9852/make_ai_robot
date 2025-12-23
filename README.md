@@ -984,7 +984,7 @@ The robot rotate around her. The rotation direction is not important.
 
 # 🏆 Competition Result Table
 
-| Rank | Total Score (Mission + Module) | Localization Module Score | Perception Module Score | Mission Score | Mission Time | Mission1 | Mission2 | Mission3 | Mission4 | Mission5 | Mission6 | 
+| Rank | Total Score | Localization | Perception | Mission | Mission Time | Mission1 | Mission2 | Mission3 | Mission4 | Mission5 | Mission6 | 
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 1 | 100 | 20 | 10 | 70 | 16:00 | o | o | o | o | o | o |
 | 2 | 80 | 20 | 10 | 50 | 10:26 | o | x | o | o | o | o |
