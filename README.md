@@ -977,11 +977,6 @@ The robot rotate around her. The rotation direction is not important.
 | 9 | 0 | 30:00 | x | x | x | x | x | x | 
 | 10 | 0 | 30:00 | x | x | x | x | x | x | 
 
-
-
-
-
-
 # 💡 Helpful Tips for ROS2 Beginners
 
 ## Useful ROS2 Commands
