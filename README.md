@@ -46,10 +46,10 @@ Student should implement core modules for robot navigation and build a system fo
   - [💯 Scoring Structure](#-scoring-structure)
     - [Module Design (30 points)](#module-design-30-points)
     - [Competition (70 points)](#competition-70-points)
-  - [Module Design 1. `localization`](#module-design-1-localization)
+  - [🧩 Module Design 1. `localization`](#-module-design-1-localization)
     - [⚠️ Important Requirements:](#️-important-requirements)
     - [📊 Evaluation:](#-evaluation)
-  - [Module Design 2. `perception`](#module-design-2-perception)
+  - [🧩 Module Design 2. `perception`](#-module-design-2-perception)
       - [Center Region Rule](#center-region-rule)
   - [📊 Evaluation: 10 points (absolute evaluation, pass/fail)](#-evaluation-10-points-absolute-evaluation-passfail)
     - [Overview](#overview)
@@ -606,7 +606,7 @@ Especially, for the localization module, if robot starts not near `x=0, y=1, yaw
 
 ---
 
-## Module Design 1. `localization` 
+## 🧩 Module Design 1. `localization` 
 
 **Goal**: Create a `localization` package for particle filter-based robot localization using available sensors and map data.
 
@@ -724,7 +724,7 @@ There are 3 ros bag data, whose score of each is (4, 8, 8), total 20. If you suc
 
 ---
 
-## Module Design 2. `perception` 
+## 🧩 Module Design 2. `perception` 
 
 This module focuses on building a **ROS2 perception system** capable of detecting objects, classifying them, estimating distance, and generating robot speech cues based on object position. The final output will be verified using the provided interface viewer.
 
