@@ -6,25 +6,9 @@ CRAIP is developed using the Language-Image-based Mobile Robot (LIMBO) framework
 
 It contains a collection of ROS2 packages for controlling the Unitree Go1 quadruped robot in Gazebo simulation environment.
 
----
+Student should implement core modules for robot navigation and build a system for language guided mobile robot.
 
-# ⚠️ Caution (Only After Git Clone)
-This repository is currently under active development and **frequent updates** may occur.
-
-To ensure you are working with the **latest version** of this project, please run the following command in your terminal:
-
-```bash
-cd make_ai_robot
-git fetch origin
-git status
-
-# Update your workspace (Be careful to use)
-git pull origin main
-```
-
-### ⚠️ Important Note:
-
-Be careful not to overwrite your local changes when pulling updates. We recommend that you create new packages and work on them.
+<img src="images/final_picture.jpg?v=1" alt="Picture at the final project" width="600"/>
 
 ---
 
@@ -969,6 +953,36 @@ The robot rotate around her. The rotation direction is not important.
 **Points**: 10 points with success/failure. 
 
 ---
+
+# 🏆 Competition Result Video
+
+Click the image to watch the video
+
+| Rank | Team Name | Driving Video |
+|:---:|:---:|:---:|
+| 1 | Team 9 | [![Click to Watch](images/thumbnail_video_1st_low.png)](images/video_1st_low.mp4) |
+| 2 | Team 5 | [![Click to Watch](images/thumbnail_video_2nd_low.png)](images/video_2nd_low.mp4) |
+| 3 | Team 3 | [![Click to Watch](images/thumbnail_video_3rd_low.png)](images/video_3rd_low.mp4) |
+
+# 🏆 Competition Result Table
+
+| Rank | Total Score | Total Time | Mission1 | Mission2 | Mission3 | Mission4 | Mission5 | Mission6 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 70 | 16:00 | o | o | o | o | o | o | 
+| 2 | 50 | 10:26 | o | x | o | o | o | o | 
+| 3 | 50 | 14:18 | o | x | o | o | o | o | 
+| 4 | 40 | 30:00 | o | x | o | x | o | o | 
+| 5 | 30 | 30:00 | o | x | o | x | o | x | 
+| 6 | 20 | 25:09 | o | x | o | x | x | x | 
+| 7 | 10 | 30:00 | x | x | x | x | o | x | 
+| 8 | 0 | 30:00 | x | x | x | x | x | x | 
+| 9 | 0 | 30:00 | x | x | x | x | x | x | 
+| 10 | 0 | 30:00 | x | x | x | x | x | x | 
+
+
+
+
+
 
 # 💡 Helpful Tips for ROS2 Beginners
 
