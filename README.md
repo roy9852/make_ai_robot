@@ -8,7 +8,7 @@ It contains a collection of ROS2 packages for controlling the Unitree Go1 quadru
 
 Student should implement core modules for robot navigation and build a system for language guided mobile robot.
 
-<img src="images/final_picture.jpg?v=1" alt="Picture at the final project" width="600"/>
+<img src="images/final_picture.jpg?v=1" alt="Picture at the final project" width="800"/>
 
 ---
 
