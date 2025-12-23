@@ -958,9 +958,9 @@ The robot rotate around her. The rotation direction is not important.
 
 | Rank | Team Name | Driving Video |
 |:---:|:---:|:---:|
-| 1 | Team 9 | <img src="images/video_1st_low.gif" alt="Team 9" width="600"/> |
-| 2 | Team 5 | <img src="images/video_2nd_low.gif" alt="Team 5" width="600"/> |
-| 3 | Team 3 | <img src="images/video_3rd_low.gif" alt="Team 3" width="600"/> |
+| 1 | Team 9 | <img src="images/video_1st_low.gif" alt="Team 9" width="300"/> |
+| 2 | Team 5 | <img src="images/video_2nd_low.gif" alt="Team 5" width="300"/> |
+| 3 | Team 3 | <img src="images/video_3rd_low.gif" alt="Team 3" width="300"/> |
 
 # 🏆 Competition Result Table
 
