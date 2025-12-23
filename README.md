@@ -984,18 +984,20 @@ The robot rotate around her. The rotation direction is not important.
 
 # 🏆 Competition Result Table
 
-| Rank | Total Score | Total Time | Mission1 | Mission2 | Mission3 | Mission4 | Mission5 | Mission6 |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| 1 | 70 | 16:00 | o | o | o | o | o | o | 
-| 2 | 50 | 10:26 | o | x | o | o | o | o | 
-| 3 | 50 | 14:18 | o | x | o | o | o | o | 
-| 4 | 40 | 30:00 | o | x | o | x | o | o | 
-| 5 | 30 | 30:00 | o | x | o | x | o | x | 
-| 6 | 20 | 25:09 | o | x | o | x | x | x | 
-| 7 | 10 | 30:00 | x | x | x | x | o | x | 
-| 8 | 0 | 30:00 | x | x | x | x | x | x | 
-| 9 | 0 | 30:00 | x | x | x | x | x | x | 
-| 10 | 0 | 30:00 | x | x | x | x | x | x | 
+| Rank | Total Score (Mission + Module) | Localization Module Score | Perception Module Score | Mission Score | Mission Time | Mission1 | Mission2 | Mission3 | Mission4 | Mission5 | Mission6 | 
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 100 | 20 | 10 | 70 | 16:00 | o | o | o | o | o | o |
+| 2 | 80 | 20 | 10 | 50 | 10:26 | o | x | o | o | o | o |
+| 3 | 80 | 20 | 10 | 50 | 14:18 | o | x | o | o | o | o |
+| 4 | 70 | 20 | 10 | 40 | 30:00 | o | x | o | x | o | o |
+| 5 | 45 | 15 | 10 | 20 | 25:09 | o | x | o | x | x | x |
+| 6 | 40 | 0 | 10 | 30 | 30:00 | o | x | o | x | o | x |
+| 7 | 27 | 7 | 10 | 10 | 30:00 | x | x | x | x | o | x |
+| 8 | 13 | 3 | 10 | 0 | 30:00 | x | x | x | x | x | x |
+| 9 | 10 | 0 | 10 | 0 | 30:00 | x | x | x | x | x | x |
+| 10 | 10 | 0 | 10 | 0 | 30:00 | x | x | x | x | x | x |
+| mean | 47.5 | 10.5 | 10 | 27 | 24:00 | 60% | 10% | 60% | 30% | 60% | 40% |
+
 
 # 💡 Helpful Tips for ROS2 Beginners
 
